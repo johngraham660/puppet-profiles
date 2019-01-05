@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe 'profiles::base' do
   on_supported_os.each do |os, os_facts|
-    next unless facts[:kernel] == 'Linux'
     context "on #{os}" do
       let(:facts) { os_facts }
 
