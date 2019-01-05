@@ -2,9 +2,9 @@
   "name": "virtua-profiles",
   "version": "0.1.0",
   "author": "John Graham",
-  "summary": "",
+  "summary": "Virtua Profiles Module",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "git@gitlab.virtua.vm:puppet/profiles.git",
   "dependencies": [
 
   ],
