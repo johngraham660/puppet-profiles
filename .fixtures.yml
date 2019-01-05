@@ -3,4 +3,23 @@
 ---
 fixtures:
   forge_modules:
-#     stdlib: "puppetlabs/stdlib"
+    stdlib: "puppetlabs/stdlib"
+  repositories:
+    ntp:
+      repo: "git@gitlab.virtua.vm:puppet/ntp.git"
+      branch: development
+    ldapclient:
+      repo: "git@gitlab.virtua.vm:puppet/ldapclient.git"
+      branch: development
+    ssh:
+      repo: "git@gitlab.virtua.vm:puppet/ssh.git"
+      branch: development
+    pam:
+      repo: "git@gitlab.virtua.vm:puppet/pam.git"
+      branch: development
+    autofs: 
+      repo: "git@gitlab.virtua.vm:puppet/autofs.git"
+      branch: development
+    rsyslog:
+      repo: "git@gitlab.virtua.vm:puppet/rsyslog.git"
+      branch: development
