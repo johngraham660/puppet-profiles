@@ -6,4 +6,11 @@
 #   include profiles
 class profiles {
   include profiles::base
+  include profiles::apache
+  include profiles::nginx
+  include profiles::mysql
+  include profiles::postgres
+  include profiles::ciserver
+  include profiles::haproxy
+  include profiles::puppetserver
 }
