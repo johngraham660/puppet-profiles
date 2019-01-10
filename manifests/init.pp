@@ -5,4 +5,5 @@
 # @example
 #   include profiles
 class profiles {
+  include profiles::base
 }
