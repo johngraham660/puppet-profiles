@@ -1,1 +1,85 @@
 ---
+# ========================================================
+# Puppet servers that everything should be using.
+# The CA and Master are 2 different servers.
+# The Load Balancer deals with catalog or certificate
+# requests and forwards them through the defined balancers
+# Used In :-
+#   profiles::puppetagent
+# ========================================================
+#puppetmaster: 'puppet.virtua.vm'
+#puppetca    : 'puppet.virtua.vm'
+
+# ========================================================
+# Autofs configuration data
+# Used In :-
+#  profiles::base
+# ========================================================
+profiles::base::autofs_service_enable: true
+profiles::base::autofs_service_ensure: 'running'
+profiles::base::autofs_config_usetls: 'yes'
+profiles::base::autofs_config_tlsrequired: 'no'
+profiles::base::autofs_config_authrequired: 'simple'
+profiles::base::autofs_config_authtype: 'PLAIN'
+profiles::base::autofs_config_user: 'cn=proxyAgent,ou=profile,dc=virtua,dc=com'
+profiles::base::autofs_config_secret: 'pr0xyLDAP'
+profiles::base::autofs_config_timeout: '300'
+profiles::base::autofs_config_browse_mode: 'no'
+profiles::base::autofs_config_logging: 'none'
+profiles::base::autofs_config_map_object_class: 'automountMap'
+profiles::base::autofs_config_entry_object_class: 'automount'
+profiles::base::autofs_config_map_attribute: 'automountMapName'
+profiles::base::autofs_config_entry_attribute: 'automountKey'
+profiles::base::autofs_config_value_attribute: 'automountInformation'
+profiles::base::autofs_config_auth_conf_file: '/etc/autofs_ldap_auth.conf'
+profiles::base::autofs_config_use_misc_device: 'yes'
+
+# ========================================================
+# The ldap servers that the ldap module use.
+# Used In :-
+#  profiles::base
+# ========================================================
+profiles::base::ldapclient_service_enable: true
+profiles::base::ldapclient_service_ensure: 'running'
+profiles::base::ldapclient_config_servers: 'qnap869.virtua.vm'
+profiles::base::ldapclient_config_basedn: 'dc=virtua,dc=com'
+profiles::base::ldapclient_config_uri: 'ldap://192.168.1.202'
+profiles::base::ldapclient_config_proxypass: 'ProxyPass123'
+
+# ========================================================
+# Time servers that the ntp module requires.
+# Used In :-
+#  profiles::base
+# ========================================================
+profiles::base::ntp_service_enable: true
+profiles::base::ntp_service_ensure: 'running'
+profiles::base::ntp_config_servers: 'qnap869.virtua.vm'
+
+
+# ========================================================
+# PAM
+# ========================================================
+profiles::base::pam_service_enable: true
+profiles::base::pam_service_ensure: 'running'
+
+# ========================================================
+# RSYSLOG
+# ========================================================
+profiles::base::rsyslog_service_enable: true
+profiles::base::rsyslog_service_ensure: 'running'
+
+# ========================================================
+# SSH
+# ========================================================
+profiles::base::ssh_service_enable: true
+profiles::base::ssh_service_ensure: 'running'
+profiles::base::ssh_config_x11forwarding: 'no'
+profiles::base::ssh_config_print_motd: 'yes'
+profiles::base::ssh_config_print_banner: 'yes'
+profiles::base::ssh_config_banner_content: 'puppet:///modules/ssh/issue'
+profiles::base::ssh_config_banner_path: '/etc/issue'
+profiles::base::ssh_config_use_dns: 'no'
+profiles::base::ssh_config_strictmodes: 'yes'
+profiles::base::ssh_config_permitrootlogin: 'without-password'
+profiles::base::ssh_package_server: 'openssh-server'
+profiles::base::ssh_package_client: 'openssh-client'
