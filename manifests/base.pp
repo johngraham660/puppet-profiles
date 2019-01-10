@@ -9,18 +9,18 @@ class profiles::base {
   # ==============================================
   # Hiera lookups for ldapclient class parameters
   # ==============================================
-  $ldapclient_service_enable = lookup('profiles::base::ldapclient_service_enable', {value_type => Boolean, default_value => true })
-  $ldapclient_service_ensure = lookup('profiles::base::ldapclient_service_ensure', {value_type => String, default_value => 'running'})
-  $ldapclient_config_servers = lookup('profiles::base::ldapclient_config_servers', {value_type => String, default_value => 'qnap869.virtua.vm'})
-  $ldapclient_config_basedn = lookup('profiles::base::ldapclient_config_basedn', {value_type => String, default_value => 'dc=virtua,dc=com'})
-  $ldapclient_config_uri = lookup('profiles::base::ldapclient_config_uri', {value_type => String, default_value => 'ldap://192.168.1.202'})
-  $ldapclient_config_proxypass = lookup('profiles::base::ldapclient_config_proxypass', {value_type => String, default_value => 'ProxyPass123'})
+  $ldapclient_service_enable = lookup('profiles::base::ldapclient_service_enable', {value_type => Boolean})
+  $ldapclient_service_ensure = lookup('profiles::base::ldapclient_service_ensure', {value_type => String})
+  $ldapclient_config_servers = lookup('profiles::base::ldapclient_config_servers', {value_type => String})
+  $ldapclient_config_basedn = lookup('profiles::base::ldapclient_config_basedn', {value_type => String})
+  $ldapclient_config_uri = lookup('profiles::base::ldapclient_config_uri', {value_type => String})
+  $ldapclient_config_proxypass = lookup('profiles::base::ldapclient_config_proxypass', {value_type => String})
 
   # ======================================
   # Hiera lookups for ssh class parameters
   # ======================================
-  $ssh_service_enable = lookup('profiles::base::ssh_service_enable', {value_type => Boolean, default_value => true })
-  $ssh_service_ensure = lookup('profiles::base::ssh_service_ensure', {value_type => String, default_value => 'running' })
+  $ssh_service_enable = lookup('profiles::base::ssh_service_enable', {value_type => Boolean, default_value => false })
+  $ssh_service_ensure = lookup('profiles::base::ssh_service_ensure', {value_type => String, default_value => 'stopped' })
   $ssh_config_x11forwarding = lookup('profiles::base::ssh_config_x11forwarding', {value_type => String, default_value => 'no' })
   $ssh_config_print_motd = lookup('profiles::base::ssh_config_print_motd', {value_type => String, default_value => 'yes' })
   $ssh_config_print_banner = lookup('profiles::base::ssh_config_print_banner', {value_type => String, default_value => 'yes' })
@@ -35,14 +35,14 @@ class profiles::base {
   # ======================================
   # Hiera lookups for pam class parameters
   # ======================================
-  $pam_service_enable = lookup('profiles::base::pam_service_enable', {value_type => Boolean, default_value => true })
-  $pam_service_ensure = lookup('profiles::base::pam_service_ensure', {value_type => String, default_value => 'running' })
+  $pam_service_enable = lookup('profiles::base::pam_service_enable', {value_type => Boolean, default_value => false })
+  $pam_service_ensure = lookup('profiles::base::pam_service_ensure', {value_type => String, default_value => 'stopped'})
 
   # =========================================
   # Hiera lookups for autofs class parameters
   # =========================================
-  $autofs_service_enable = lookup('profiles::base::autofs_service_enable', {value_type => Boolean, default_value => true })
-  $autofs_service_ensure = lookup('profiles::base::autofs_service_ensure', {value_type => String, default_value => 'running' })
+  $autofs_service_enable = lookup('profiles::base::autofs_service_enable', {value_type => Boolean, default_value => false })
+  $autofs_service_ensure = lookup('profiles::base::autofs_service_ensure', {value_type => String, default_value => 'stopped' })
   $autofs_config_usetls = lookup('profiles::base::autofs_config_usetls', {value_type => String, default_value => 'yes' })
   $autofs_config_tlsrequired = lookup('profiles::base::autofs_config_tlsrequired', {value_type => String, default_value => 'no' })
   $autofs_config_authrequired = lookup('profiles::base::autofs_config_authrequired', {value_type => String, default_value => 'simple' })
@@ -59,17 +59,19 @@ class profiles::base {
   $autofs_config_value_attribute = lookup('profiles::base::autofs_config_value_attribute', {value_type => String, default_value => 'automountInformation' })
   $autofs_config_auth_conf_file = lookup('profiles::base::autofs_config_auth_conf_file', {value_type => String, default_value => '/etc/autofs_ldap_auth.conf' })
   $autofs_config_use_misc_device = lookup('profiles::base::autofs_config_use_misc_device', {value_type => String, default_value => 'yes' })
-  #
+
+  # =========================================
   # Hiera lookups for ntp class parameters
-  $ntp_service_enable = lookup('profiles::base::ntp_service_enable', {value_type => Boolean, default_value => true })
-  $ntp_service_ensure = lookup('profiles::base::ntp_service_ensure', {value_type => String, default_value => 'running' })
-  $ntp_config_servers = lookup('profiles::base::ntp_config_servers', {value_type => String, default_value => '192.168.1.134' })
-  #
+  # =========================================
+  $ntp_service_enable = lookup('profiles::base::ntp_service_enable', {value_type => Boolean, default_value => false })
+  $ntp_service_ensure = lookup('profiles::base::ntp_service_ensure', {value_type => String, default_value => 'stopped' })
+  $ntp_config_servers = lookup('profiles::base::ntp_config_servers', {value_type => String, default_value => 'qnap869.virtua.vm' })
+  
   # ==========================================
   # Hiera lookups for rsyslog class parameters
   # ==========================================
-  $rsyslog_service_enable = lookup('profiles::base::rsyslog_service_enable', {value_type => Boolean, default_value => true })
-  $rsyslog_service_ensure = lookup('profiles::base::rsyslog_service_ensure', {value_type => String, default_value => 'running' })
+  $rsyslog_service_enable = lookup('profiles::base::rsyslog_service_enable', {value_type => Boolean, default_value => false })
+  $rsyslog_service_ensure = lookup('profiles::base::rsyslog_service_ensure', {value_type => String, default_value => 'stopped' })
 
   class { '::autofs':
     autofs_service_enable            => $autofs_service_enable,
