@@ -20,7 +20,7 @@ describe 'profiles::base' do
           is_expected.to contain_class('autofs').with(
             'autofs_service_enable' => true,
             'autofs_service_ensure' => 'running',
-            'autofs_config_usetls' => 'yes',
+            #'autofs_config_usetls' => 'yes',
             'autofs_config_tlsrequired' => 'no',
             'autofs_config_authrequired' => 'simple',
             'autofs_config_authtype' => 'PLAIN',

@@ -23,7 +23,7 @@ profiles::base::autofs_config_authrequired: 'simple'
 profiles::base::autofs_config_authtype: 'PLAIN'
 profiles::base::autofs_config_user: 'cn=proxyAgent,ou=profile,dc=virtua,dc=com'
 profiles::base::autofs_config_secret: 'pr0xyLDAP'
-profiles::base::autofs_config_timeout: '300'
+profiles::base::autofs_config_timeout: 300
 profiles::base::autofs_config_browse_mode: 'no'
 profiles::base::autofs_config_logging: 'none'
 profiles::base::autofs_config_map_object_class: 'automountMap'

@@ -4,5 +4,5 @@
 #
 # @example
 #   include profiles::ciserver
-class profiles::ciserver {
+class profiles::jenkins {
 }

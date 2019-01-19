@@ -49,7 +49,7 @@ class profiles::base {
   $autofs_config_authtype = lookup('profiles::base::autofs_config_authtype', {value_type => String, default_value => 'PLAIN' })
   $autofs_config_user = lookup('profiles::base::autofs_config_user', {value_type => String, default_value => 'cn=proxyAgent,ou=profile,dc=virtua,dc=com' })
   $autofs_config_secret = lookup('profiles::base::autofs_config_secret', {value_type => String, default_value => 'pr0xyLDAP' })
-  $autofs_config_timeout = lookup('profiles::base::autofs_config_timeout', {value_type => String, default_value => '300' })
+  $autofs_config_timeout = lookup('profiles::base::autofs_config_timeout', {value_type => Integer, default_value => 300 })
   $autofs_config_browse_mode = lookup('profiles::base::autofs_config_browse_mode', {value_type => String, default_value => 'no' })
   $autofs_config_logging = lookup('profiles::base::autofs_config_logging', {value_type => String, default_value => 'none' })
   $autofs_config_map_object_class = lookup('profiles::base::autofs_config_map_object_class', {value_type => String, default_value => 'automountMap' })
@@ -66,7 +66,7 @@ class profiles::base {
   $ntp_service_enable = lookup('profiles::base::ntp_service_enable', {value_type => Boolean, default_value => false })
   $ntp_service_ensure = lookup('profiles::base::ntp_service_ensure', {value_type => String, default_value => 'stopped' })
   $ntp_config_servers = lookup('profiles::base::ntp_config_servers', {value_type => String, default_value => 'qnap869.virtua.vm' })
-  
+
   # ==========================================
   # Hiera lookups for rsyslog class parameters
   # ==========================================
