@@ -41,24 +41,24 @@ class profiles::base {
   # =========================================
   # Hiera lookups for autofs class parameters
   # =========================================
-  $autofs_service_enable = lookup('profiles::base::autofs_service_enable', {value_type => Boolean, default_value => false })
-  $autofs_service_ensure = lookup('profiles::base::autofs_service_ensure', {value_type => String, default_value => 'stopped' })
-  $autofs_config_usetls = lookup('profiles::base::autofs_config_usetls', {value_type => String, default_value => 'yes' })
-  $autofs_config_tlsrequired = lookup('profiles::base::autofs_config_tlsrequired', {value_type => String, default_value => 'no' })
-  $autofs_config_authrequired = lookup('profiles::base::autofs_config_authrequired', {value_type => String, default_value => 'simple' })
-  $autofs_config_authtype = lookup('profiles::base::autofs_config_authtype', {value_type => String, default_value => 'PLAIN' })
-  $autofs_config_user = lookup('profiles::base::autofs_config_user', {value_type => String, default_value => 'cn=proxyAgent,ou=profile,dc=virtua,dc=com' })
-  $autofs_config_secret = lookup('profiles::base::autofs_config_secret', {value_type => String, default_value => 'pr0xyLDAP' })
-  $autofs_config_timeout = lookup('profiles::base::autofs_config_timeout', {value_type => Integer, default_value => 300 })
-  $autofs_config_browse_mode = lookup('profiles::base::autofs_config_browse_mode', {value_type => String, default_value => 'no' })
-  $autofs_config_logging = lookup('profiles::base::autofs_config_logging', {value_type => String, default_value => 'none' })
-  $autofs_config_map_object_class = lookup('profiles::base::autofs_config_map_object_class', {value_type => String, default_value => 'automountMap' })
-  $autofs_config_entry_object_class = lookup('profiles::base::autofs_config_entry_object_class', {value_type => String, default_value => 'automount' })
-  $autofs_config_map_attribute = lookup('profiles::base::autofs_config_map_attribute', {value_type => String, default_value => 'automountMapName' })
-  $autofs_config_entry_attribute  = lookup('profiles::base::autofs_config_entry_attribute', {value_type => String, default_value => 'automountKey' })
-  $autofs_config_value_attribute = lookup('profiles::base::autofs_config_value_attribute', {value_type => String, default_value => 'automountInformation' })
-  $autofs_config_auth_conf_file = lookup('profiles::base::autofs_config_auth_conf_file', {value_type => String, default_value => '/etc/autofs_ldap_auth.conf' })
-  $autofs_config_use_misc_device = lookup('profiles::base::autofs_config_use_misc_device', {value_type => String, default_value => 'yes' })
+  #$autofs_service_enable = lookup('profiles::base::autofs_service_enable', {value_type => Boolean, default_value => false })
+  #$autofs_service_ensure = lookup('profiles::base::autofs_service_ensure', {value_type => String, default_value => 'stopped' })
+  #$autofs_config_usetls = lookup('profiles::base::autofs_config_usetls', {value_type => String, default_value => 'yes' })
+  #$autofs_config_tlsrequired = lookup('profiles::base::autofs_config_tlsrequired', {value_type => String, default_value => 'no' })
+  #$autofs_config_authrequired = lookup('profiles::base::autofs_config_authrequired', {value_type => String, default_value => 'simple' })
+  #$autofs_config_authtype = lookup('profiles::base::autofs_config_authtype', {value_type => String, default_value => 'PLAIN' })
+  #$autofs_config_user = lookup('profiles::base::autofs_config_user', {value_type => String, default_value => 'cn=proxyAgent,ou=profile,dc=virtua,dc=com' })
+  #$autofs_config_secret = lookup('profiles::base::autofs_config_secret', {value_type => String, default_value => 'pr0xyLDAP' })
+  #$autofs_config_timeout = lookup('profiles::base::autofs_config_timeout', {value_type => Integer, default_value => 300 })
+  #$autofs_config_browse_mode = lookup('profiles::base::autofs_config_browse_mode', {value_type => String, default_value => 'no' })
+  #$autofs_config_logging = lookup('profiles::base::autofs_config_logging', {value_type => String, default_value => 'none' })
+  #$autofs_config_map_object_class = lookup('profiles::base::autofs_config_map_object_class', {value_type => String, default_value => 'automountMap' })
+  #$autofs_config_entry_object_class = lookup('profiles::base::autofs_config_entry_object_class', {value_type => String, default_value => 'automount' })
+  #$autofs_config_map_attribute = lookup('profiles::base::autofs_config_map_attribute', {value_type => String, default_value => 'automountMapName' })
+  #$autofs_config_entry_attribute  = lookup('profiles::base::autofs_config_entry_attribute', {value_type => String, default_value => 'automountKey' })
+  #$autofs_config_value_attribute = lookup('profiles::base::autofs_config_value_attribute', {value_type => String, default_value => 'automountInformation' })
+  #$autofs_config_auth_conf_file = lookup('profiles::base::autofs_config_auth_conf_file', {value_type => String, default_value => '/etc/autofs_ldap_auth.conf' })
+  #$autofs_config_use_misc_device = lookup('profiles::base::autofs_config_use_misc_device', {value_type => String, default_value => 'yes' })
 
   # =========================================
   # Hiera lookups for ntp class parameters
@@ -73,26 +73,29 @@ class profiles::base {
   $rsyslog_service_enable = lookup('profiles::base::rsyslog_service_enable', {value_type => Boolean, default_value => false })
   $rsyslog_service_ensure = lookup('profiles::base::rsyslog_service_ensure', {value_type => String, default_value => 'stopped' })
 
-  class { '::autofs':
-    autofs_service_enable            => $autofs_service_enable,
-    autofs_service_ensure            => $autofs_service_ensure,
-    autofs_config_usetls             => $autofs_config_usetls,
-    autofs_config_tlsrequired        => $autofs_config_tlsrequired,
-    autofs_config_authrequired       => $autofs_config_authrequired,
-    autofs_config_authtype           => $autofs_config_authtype,
-    autofs_config_user               => $autofs_config_user,
-    autofs_config_secret             => $autofs_config_secret,
-    autofs_config_timeout            => $autofs_config_timeout,
-    autofs_config_browse_mode        => $autofs_config_browse_mode,
-    autofs_config_logging            => $autofs_config_logging,
-    autofs_config_map_object_class   => $autofs_config_map_object_class,
-    autofs_config_entry_object_class => $autofs_config_entry_object_class,
-    autofs_config_map_attribute      => $autofs_config_map_attribute,
-    autofs_config_entry_attribute    => $autofs_config_entry_attribute,
-    autofs_config_value_attribute    => $autofs_config_value_attribute,
-    autofs_config_auth_conf_file     => $autofs_config_auth_conf_file,
-    autofs_config_use_misc_device    => $autofs_config_use_misc_device,
-  }
+  # ====================================================================
+  # Disabling this utill I can fix the autofs issue on my puppet clients
+  # ====================================================================
+  #class { '::autofs':
+  #  autofs_service_enable            => $autofs_service_enable,
+  #  autofs_service_ensure            => $autofs_service_ensure,
+  #  autofs_config_usetls             => $autofs_config_usetls,
+  #  autofs_config_tlsrequired        => $autofs_config_tlsrequired,
+  #  autofs_config_authrequired       => $autofs_config_authrequired,
+  #  autofs_config_authtype           => $autofs_config_authtype,
+  #  autofs_config_user               => $autofs_config_user,
+  #  autofs_config_secret             => $autofs_config_secret,
+  #  autofs_config_timeout            => $autofs_config_timeout,
+  #  autofs_config_browse_mode        => $autofs_config_browse_mode,
+  #  autofs_config_logging            => $autofs_config_logging,
+  #  autofs_config_map_object_class   => $autofs_config_map_object_class,
+  #  autofs_config_entry_object_class => $autofs_config_entry_object_class,
+  #  autofs_config_map_attribute      => $autofs_config_map_attribute,
+  #  autofs_config_entry_attribute    => $autofs_config_entry_attribute,
+  #  autofs_config_value_attribute    => $autofs_config_value_attribute,
+  #  autofs_config_auth_conf_file     => $autofs_config_auth_conf_file,
+  #  autofs_config_use_misc_device    => $autofs_config_use_misc_device,
+  #}
 
   class { '::ldapclient':
     ldapclient_service_enable   => $ldapclient_service_enable,
