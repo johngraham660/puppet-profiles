@@ -72,6 +72,7 @@ class profiles::base {
   # ==========================================
   $rsyslog_service_enable = lookup('profiles::base::rsyslog_service_enable', {value_type => Boolean, default_value => false })
   $rsyslog_service_ensure = lookup('profiles::base::rsyslog_service_ensure', {value_type => String, default_value => 'stopped' })
+  $rsyslog_config_rsyslogserver = lookup('profiles::base::rsyslog_config_rsyslogserver', {value_type => String, default_value => '192.168.1.200' })
 
   # ====================================================================
   # Disabling this utill I can fix the autofs issue on my puppet clients
@@ -118,8 +119,9 @@ class profiles::base {
   }
 
   class { '::rsyslog':
-    rsyslog_service_enable => $rsyslog_service_enable,
-    rsyslog_service_ensure => $rsyslog_service_ensure,
+    rsyslog_service_enable       => $rsyslog_service_enable,
+    rsyslog_service_ensure       => $rsyslog_service_ensure,
+    rsyslog_config_rsyslogserver => $rsyslog_config_rsyslogserver,
   }
 
   class { '::ssh':
