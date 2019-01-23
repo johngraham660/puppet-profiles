@@ -67,6 +67,7 @@ profiles::base::pam_service_ensure: 'running'
 # ========================================================
 profiles::base::rsyslog_service_enable: true
 profiles::base::rsyslog_service_ensure: 'running'
+profiles::base::rsyslog_config_rsyslogserver: 'qnap869.virtua.vm'
 
 # ========================================================
 # SSH
