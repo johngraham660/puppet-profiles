@@ -69,6 +69,7 @@ describe 'profiles::base' do
           is_expected.to contain_class('rsyslog').with(
             'rsyslog_service_enable' => true,
             'rsyslog_service_ensure' => 'running',
+            'rsyslog_config_rsyslogserver' => 'qnap869.virtua.vm',
           )
         end
 
