@@ -10,13 +10,13 @@ describe 'profiles::base' do
         it { is_expected.to contain_class('ldapclient') }
         it { is_expected.to contain_class('ssh') }
         it { is_expected.to contain_class('pam') }
-        #it { is_expected.to contain_class('autofs') }
+        # it { is_expected.to contain_class('autofs') }
         it { is_expected.to contain_class('ntp') }
         it { is_expected.to contain_class('rsyslog') }
       end
 
       context 'with class parameters' do
-        #it do
+        # it do
         #  is_expected.to contain_class('autofs').with(
         #    'autofs_service_enable' => true,
         #    'autofs_service_ensure' => 'running',
@@ -37,7 +37,7 @@ describe 'profiles::base' do
         #    'autofs_config_auth_conf_file' => '/etc/autofs_ldap_auth.conf',
         #    'autofs_config_use_misc_device' => 'yes',
         #  )
-        #end
+        # end
 
         it do
           is_expected.to contain_class('ldapclient').with(
