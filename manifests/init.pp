@@ -10,7 +10,8 @@ class profiles {
   include profiles::nginx
   include profiles::mysql
   include profiles::postgres
-  include profiles::jenkins
+  include profiles::jenkins::master
+  include profiles::jenkins::slave
   include profiles::haproxy
   include profiles::puppetserver
 }
