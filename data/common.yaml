@@ -84,3 +84,71 @@ profiles::base::ssh_config_strictmodes: 'yes'
 profiles::base::ssh_config_permitrootlogin: 'without-password'
 profiles::base::ssh_package_server: 'openssh-server'
 profiles::base::ssh_package_client: 'openssh-client'
+
+# ================
+# Websphere Common
+# ================
+profiles::websphere::common::websphere_users:
+  wasadmin:
+    ensure: 'present'
+    uid: 9000
+    gid: was
+    comment: 'WebSphere Admin User'
+    groups: ['was']
+    home: '/home/wasadmin'
+    managehome: true
+    shell: '/bin/bash'
+  wasread:
+    ensure: 'present'
+    uid: 9001
+    gid: was
+    comment: 'WebSphere ReadOnly User'
+    groups: ['was']
+    home: '/home/wasread'
+    managehome: true
+    shell: '/bin/bash' 
+
+profiles::websphere::common::websphere_groups: 
+  was:
+    ensure: 'present'
+    gid: 1001
+  ihs:
+    ensure: 'present'
+    gid: 1002
+
+# =============
+# Websphere WAS
+# =============
+profiles::websphere::was::lvm::volume_groups:
+  websphereVG:
+    createonly: true
+    physical_volumes:
+      /dev/sdb1:
+        unless_vg: 'websphereVG'
+    logical_volumes:
+      webspherevol1:
+        size: 20G
+        mountpath: /opt/websphere
+        mountpath_require: true
+      webspherevol2:
+        size: 20G
+        mountpath: /opt/websphere/backup
+        mountpath_require: true
+# =============
+# Websphere IHS
+# =============
+profiles::websphere::ihs::lvm::volume_groups:
+  websphereVG:
+    createonly: true
+    physical_volumes:
+      /dev/sdb1:
+        unless_vg: 'websphereVG'
+    logical_volumes:
+      webspherevol1:
+        size: 5G
+        mountpath: /opt/websphere
+        mountpath_require: true
+      webspherevol2:
+        size: 5G
+        mountpath: /opt/websphere/backup
+        mountpath_require: true

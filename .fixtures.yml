@@ -4,6 +4,7 @@
 fixtures:
   forge_modules:
     stdlib: "puppetlabs/stdlib"
+    lvm: "puppetlabs/lvm"
   repositories:
     ntp:
       repo: "git@gitlab.virtua.vm:puppet/ntp.git"
@@ -22,4 +23,7 @@ fixtures:
       branch: development
     rsyslog:
       repo: "git@gitlab.virtua.vm:puppet/rsyslog.git"
+      branch: development
+    websphere:
+      repo: "git@gitlab.virtua.vm:puppet/websphere.git"
       branch: development

@@ -14,4 +14,7 @@ class profiles {
   include profiles::jenkins::slave
   include profiles::haproxy
   include profiles::puppetserver
+  include profiles::websphere::common
+  include profiles::websphere::was
+  include profiles::websphere::ihs
 }
